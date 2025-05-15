@@ -83,13 +83,17 @@ def build_trade_chart(price_df: pd.DataFrame, trades_df: pd.DataFrame) -> go.Fig
         return min_size + (q - min_qty) / (max_qty - min_qty) * (max_size - min_size)
 
     for _, row in trades_df.iterrows():
-        color = "orange" if "買" in row["取引"] else "lightblue"
+        color = "orange" if "買" in row["取引"] else "blue"
         fig.add_trace(
             go.Scatter(
                 x=[row["約定日"]],
                 y=[row["調整後単価"]],
                 mode="markers",
-                marker=dict(color=color, size=scale_size(row["調整後数量"])),
+                marker=dict(
+                    color=color,
+                    size=scale_size(row["調整後数量"]),
+                    line=dict(color="black", width=1.5)  # ← 黒枠を追加
+                ),
                 name=f"{row['約定日'].date()} {row['取引']} ({row['約定数量']}株)",
                 hovertemplate=(
                     f"日付: {row['約定日'].date()}<br>"

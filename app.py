@@ -16,6 +16,10 @@ with st.expander("CSVファイルの取得方法", expanded=True):
         6. CSVダウンロードをクリック
         7. Browserfilesをクリックし
                 ダウンロードしたCSVファイルをこのページにアップロード
+
+        注意:ファイル名はSaveFile_000001_******.csvのような形式になっているはずです。 2025年05月現在   
+        ファイルサイズの上限は200MBです。上限を超える場合は期間を短くして再度ダウンロードしてください。
+        
         
     """)
 uploaded_file = st.file_uploader("CSVファイルをアップロード", type="csv")
